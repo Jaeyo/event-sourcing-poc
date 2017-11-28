@@ -1,0 +1,74 @@
+@startuml
+
+group request elect command
+    activate ElectorClientBot
+
+    ElectorClientBot -> ElectionController: request elect
+    note right
+        ElectRequest:
+            candidate_id
+            region_id
+            gender(m/f)
+    end note
+    activate ElectionController
+
+    ElectionController -> ElectionService: elect(electRequest)
+    activate ElectionService
+
+    ElectionService -> ElectionService: create ElectCommand
+    note left
+        ElectCommand:
+            candidate_id
+            region_id
+            gender (m/f)
+    end note
+
+    ElectionService -> EventBus: fireCommand(electCommand)
+    activate EventBus
+
+    ElectionService <- EventBus
+    deactivate EventBus
+
+    ElectionController <- ElectionService
+    deactivate ElectionService
+
+    ElectorClientBot <- ElectionController
+    deactivate ElectionController
+
+    deactivate ElectorClientBot
+end
+
+group handle elect command
+    EventBus -> ElectionService: onElectCommand(electCommand)
+    activate EventBus
+    activate ElectionService
+    
+    ElectionService -> ElectionService: create ElectEvent
+    ElectionService -> EventBus: fireEvent(electEvent)
+    activate EventBus
+    
+    ElectionService <- EventBus
+    deactivate EventBus
+
+    EventBus <- ElectionService
+    deactivate ElectionService
+    deactivate EventBus
+end
+
+group handle elect event
+    EventBus -> ElectionService: onElectEvent(elevtEvent)
+    activate EventBus
+    activate ElectionService
+
+    ElectionService -> ElectionRepository: increaseVote()
+    activate ElectionRepository
+
+    ElectionService <- ElectionRepository: increaseVote()
+    deactivate ElectionRepository
+
+    EventBus <- ElectionService
+    deactivate ElectionService
+    deactivate EventBus
+end
+
+@enduml
