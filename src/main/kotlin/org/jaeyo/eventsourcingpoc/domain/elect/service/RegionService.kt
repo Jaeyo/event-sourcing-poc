@@ -7,5 +7,5 @@ import org.springframework.stereotype.Service
 class RegionService(
     val regionRepo: RegionRepository
 ) {
-  fun isValidRegionId(regionId: Long) = regionRepo.exists(regionId)
+  fun isValidRegionId(regionId: Long) = regionRepo.existsById(regionId)
 }

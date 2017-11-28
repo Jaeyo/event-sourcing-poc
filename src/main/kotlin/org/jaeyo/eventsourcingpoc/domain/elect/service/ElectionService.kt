@@ -7,7 +7,7 @@ import org.jaeyo.eventsourcingpoc.domain.elect.repository.ElectionRegionReposito
 import org.jaeyo.eventsourcingpoc.domain.elect.repository.ElectionRepository
 import org.jaeyo.eventsourcingpoc.domain.elect.vo.Gender
 import org.springframework.stereotype.Service
-import javax.transaction.Transactional
+import org.springframework.transaction.annotation.Transactional
 
 @Service
 class ElectionService(

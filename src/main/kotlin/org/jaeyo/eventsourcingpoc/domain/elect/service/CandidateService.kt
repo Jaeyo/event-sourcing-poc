@@ -7,5 +7,5 @@ import org.springframework.stereotype.Service
 class CandidateService(
     val candidateRepo: CandidateRepository
 ) {
-  fun isValidCandidateId(candidateId: Long) = candidateRepo.exists(candidateId)
+  fun isValidCandidateId(candidateId: Long) = candidateRepo.existsById(candidateId)
 }

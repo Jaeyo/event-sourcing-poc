@@ -2,7 +2,7 @@ package org.jaeyo.eventsourcingpoc.domain.elect.command
 
 import org.jaeyo.eventsourcingpoc.domain.elect.dto.ElectRequest
 import org.jaeyo.eventsourcingpoc.domain.elect.vo.Gender
-import org.jaeyo.eventsourcingpoc.infra.event.Command
+import org.jaeyo.eventsourcingpoc.common.event.Command
 
 data class ElectCommand(
     val candidateId: Long,
