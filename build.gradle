@@ -3,6 +3,7 @@ buildscript {
 		kotlinVersion = '1.1.51'
 		springBootVersion = '2.0.0.M5'
 		h2Version = "1.4.194"
+        vaadinVersion = '8.1.7'
 	}
 	repositories {
 		mavenCentral()
@@ -64,6 +65,11 @@ dependencies {
 
     compile group: 'com.google.guava', name: 'guava', version: '23.4-jre'
 	compile("com.h2database:h2:${h2Version}")
+
+    compile group: 'com.vaadin', name: 'vaadin-spring-boot-starter', version: '2.0.1'
+    compile group: 'com.vaadin', name: 'vaadin-server', version: vaadinVersion
+    compile group: 'com.vaadin', name: 'vaadin-client-compiled', version: vaadinVersion
+    compile group: 'com.vaadin', name: 'vaadin-themes', version: vaadinVersion
 
 	testCompile("org.springframework.boot:spring-boot-starter-test:${springBootVersion}")
 	testCompile group: "org.jetbrains.kotlin", name: "kotlin-test-junit", version: kotlinVersion
